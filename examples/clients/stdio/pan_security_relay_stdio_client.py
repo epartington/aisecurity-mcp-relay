@@ -161,7 +161,7 @@ async def interactive_mode(client: PanSecurityRelayStdioClient):
     print(f"Commands: {', '.join([c.value for c in InteractiveCommand])}")
     while True:
         try:
-            command = input("> ").strip()
+            command = (await asyncio.to_thread(input, "> ")).strip()
             if not command:
                 continue
             elif command == InteractiveCommand.QUIT:
